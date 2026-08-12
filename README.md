@@ -1,3 +1,3 @@
 # (ง ˙o˙)ว
 
-Personal homepage.
+GitHub Pages
