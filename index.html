@@ -1,403 +1,138 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="7893 / Still Blue. An independent study of light, depth, and form."
-    />
-    <meta name="theme-color" content="#e8e7e2" />
-    <title>7893 / Still Blue</title>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="renderer" content="webkit">
+    <title>#000000</title>
+    <link type="image/x-icon" rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAHklEQVQ4T2NkYGD4z0ABYBw1gGE0DBhGw4BhWIQBAE5OEAELnjVHAAAAAElFTkSuQmCC">
     <style>
-      :root {
-        color-scheme: light;
-        --paper: #e8e7e2;
-        --ink: #19232e;
-        --blue: #203cf1;
-      }
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-        background: var(--paper);
-        color: var(--ink);
-        font-family: Arial, Helvetica, sans-serif;
-      }
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-        text-underline-offset: 5px;
-      }
-      a:focus-visible,
-      button:focus-visible {
-        outline: 2px solid var(--blue);
-        outline-offset: 6px;
-      }
-      .page {
-        max-width: 1800px;
-        margin: auto;
-        padding: 0 5vw;
-      }
-      .micro {
-        font:
-          10px/1.7 ui-monospace,
-          monospace;
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
-      }
-      header {
-        height: 88px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-bottom: 1px solid #b9bdc3;
-      }
-      .brand {
-        font-size: 20px;
-        font-weight: 700;
-        letter-spacing: -0.07em;
-      }
-      .hero {
-        position: relative;
-        min-height: 760px;
-        display: grid;
-        grid-template-columns: 0.8fr 1.2fr;
-        align-items: center;
-        padding: 65px 0;
-      }
-      .copy {
-        z-index: 2;
-        pointer-events: none;
-      }
-      .eyebrow {
-        color: var(--blue);
-        margin: 0 0 28px;
-      }
-      h1 {
-        font-size: clamp(90px, 12vw, 190px);
-        font-weight: 400;
-        line-height: 0.82;
-        letter-spacing: -0.075em;
-        margin: 0 0 37px;
-        font-family: Georgia, "Times New Roman", serif;
-      }
-      h1 em {
-        font-weight: 400;
-        color: var(--blue);
-      }
-      .copy .note {
-        font-size: 13px;
-        line-height: 1.9;
-        color: #4e5966;
-        max-width: 250px;
-      }
-      .artwork {
-        position: relative;
-        width: 115%;
-        margin-left: -12%;
-        aspect-ratio: 1;
-        isolation: isolate;
-        overflow: clip;
-      }
-      .art {
-        height: 100%;
-        width: 100%;
-        overflow: visible;
-        transform: rotate(var(--angle, -12deg));
-        transition: transform 1.8s cubic-bezier(0.2, 0.7, 0.2, 1);
-      }
-      .sphere {
-        transform-origin: 370px 330px;
-        transition: transform 1.8s cubic-bezier(0.2, 0.7, 0.2, 1);
-      }
-      .artwork[data-state="1"] {
-        --angle: 24deg;
-      }
-      .artwork[data-state="1"] .sphere {
-        transform: rotate(35deg);
-      }
-      .artwork[data-state="2"] {
-        --angle: 65deg;
-      }
-      .artwork[data-state="2"] .sphere {
-        transform: rotate(-45deg);
-      }
-      .art-label {
-        position: absolute;
-        right: 0;
-        bottom: 10%;
-        color: #4e5966;
-        writing-mode: vertical-rl;
-      }
-      .rule {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 30px;
-        border-top: 1px solid #b9bdc3;
-        padding: 23px 0;
-      }
-      .rule p {
-        margin: 0;
-        color: #4e5966;
-      }
-      button {
-        cursor: pointer;
-        border: 1px solid #566576;
-        padding: 13px 19px;
-        background: transparent;
-        color: var(--ink);
-        font:
-          11px ui-monospace,
-          monospace;
-        display: flex;
-        align-items: center;
-        gap: 28px;
-      }
-      button:hover {
-        background: var(--ink);
-        color: var(--paper);
-      }
-      .controls {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-      }
-      .counter {
-        color: var(--blue);
-      }
-      footer {
-        display: flex;
-        justify-content: space-between;
-        padding: 23px 0 30px;
-        color: #4e5966;
-        border-top: 1px solid #b9bdc3;
-      }
-      footer a {
-        white-space: nowrap;
-      }
-      @media (max-width: 800px) {
-        header {
-          height: 70px;
+        :root {
+            --color: #000000;
+            --color-transparent: #00000022;
         }
-        .hero {
-          min-height: 600px;
+
+        ::selection {
+            background: var(--color-transparent);
         }
-        h1 {
-          font-size: 16vw;
+
+        html,
+        body {
+            background: var(--color);
+            height: 100%;
+            margin: 0;
         }
-        .artwork {
-          width: 125%;
-          margin-left: -22%;
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transform: translateZ(0);
+            will-change: transform;
         }
-        .copy .note {
-          max-width: 170px;
+
+        #color {
+            background: white;
+            color: var(--color);
+            font-size: 2.5rem;
+            font-weight: 300;
+            padding: 2.25rem 3rem;
+            font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+            cursor: text;
+            transform: translateZ(0);
+            will-change: color, background-color;
         }
-        .header-note {
-          display: none;
-        }
-      }
-      @media (max-width: 520px) {
-        .page {
-          padding: 0 7vw;
-        }
-        .hero {
-          display: flex;
-          flex-direction: column;
-          align-items: stretch;
-          padding: 40px 0 20px;
-          min-height: 0;
-        }
-        .copy {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 0 15px;
-        }
-        .eyebrow {
-          grid-column: 1/-1;
-          margin-bottom: 25px;
-        }
-        h1 {
-          font-size: 24vw;
-          margin-bottom: 0;
-          grid-column: 1;
-        }
-        .copy .note {
-          grid-column: 2;
-          align-self: end;
-          margin: 0 0 3px;
-          font-size: 11px;
-        }
-        .artwork {
-          width: 100%;
-          margin: 28px 0 0;
-        }
-        .art-label {
-          font-size: 8px;
-          right: 0;
-          bottom: 5%;
-        }
-        .rule {
-          align-items: start;
-          flex-direction: column;
-          gap: 20px;
-        }
-        .controls {
-          width: 100%;
-          justify-content: space-between;
-        }
-        .micro {
-          font-size: 9px;
-        }
-        footer {
-          gap: 20px;
-          font-size: 8px;
-        }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        .art,
-        .sphere {
-          transition: none;
-        }
-      }
     </style>
-  </head>
-  <body>
-    <div class="page">
-      <header>
-        <span class="brand">7893.</span
-        ><span class="micro header-note">Studies in the almost still</span
-        ><a class="micro" href="https://github.com/7893">GitHub &#8599;</a>
-      </header>
-      <main>
-        <section class="hero" aria-label="An abstract blue sculpture">
-          <div class="copy">
-            <p class="micro eyebrow">No. 01 / Light as a material</p>
-            <h1>Still<br /><em>Blue.</em></h1>
-            <p class="note">
-              Somewhere between an object<br />and a passing thought.
-            </p>
-          </div>
-          <div class="artwork" id="artwork" data-state="0">
-            <svg
-              class="art"
-              viewBox="0 0 740 740"
-              xmlns="http://www.w3.org/2000/svg"
-              role="img"
-              aria-labelledby="art-title art-desc"
-            >
-              <title id="art-title">Still Blue</title>
-              <desc id="art-desc">
-                A sculptural blue ring with a luminous inner edge, a warm
-                floating sphere, and a fine orbital line. Turn the sculpture
-                using the Change perspective button.
-              </desc>
-              <defs>
-                <linearGradient id="body" x1="0" y1="0" x2="1" y2="1">
-                  <stop stop-color="#8baaff" />
-                  <stop offset=".27" stop-color="#315ef7" />
-                  <stop offset=".56" stop-color="#1637c5" />
-                  <stop offset=".82" stop-color="#091750" />
-                  <stop offset="1" stop-color="#040d35" />
-                </linearGradient>
-                <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1">
-                  <stop stop-color="#b8d7ff" />
-                  <stop offset=".3" stop-color="#779cfb" />
-                  <stop offset=".6" stop-color="#1e4aea" />
-                  <stop offset="1" stop-color="#101d6d" />
-                </linearGradient>
-                <radialGradient id="gold" cx=".3" cy=".2" r=".85">
-                  <stop stop-color="#fff7dc" />
-                  <stop offset=".3" stop-color="#f3d99c" />
-                  <stop offset=".65" stop-color="#bf9352" />
-                  <stop offset="1" stop-color="#735234" />
-                </radialGradient>
-                <radialGradient id="shadow">
-                  <stop stop-color="#233455" stop-opacity=".23" />
-                  <stop offset="1" stop-color="#233455" stop-opacity="0" />
-                </radialGradient>
-                <linearGradient id="inner" x1="0" y1="0" x2="0" y2="1">
-                  <stop stop-color="#0b1b64" />
-                  <stop offset=".45" stop-color="#456ef4" />
-                  <stop offset="1" stop-color="#a9d9ff" />
-                </linearGradient>
-              </defs>
-              <ellipse cx="365" cy="616" rx="245" ry="63" fill="url(#shadow)" />
-              <path
-                d="M126 382C126 202 226 98 365 98C506 98 610 211 610 382C610 553 506 640 365 640C226 640 126 553 126 382ZM269 370C269 448 307 503 365 503C423 503 463 448 463 370C463 292 423 232 365 232C307 232 269 292 269 370Z"
-                fill="url(#body)"
-                fill-rule="evenodd"
-              />
-              <path
-                d="M126 352C126 181 226 78 365 78C506 78 610 191 610 352C610 513 506 609 365 609C226 609 126 513 126 352ZM253 352C253 446 299 513 365 513C431 513 479 446 479 352C479 258 431 205 365 205C299 205 253 258 253 352Z"
-                fill="url(#rim)"
-                fill-rule="evenodd"
-              />
-              <path
-                d="M253 352C253 258 299 205 365 205C431 205 479 258 479 352C479 446 431 513 365 513C299 513 253 446 253 352ZM280 354C280 434 315 482 365 482C415 482 450 434 450 354C450 274 415 229 365 229C315 229 280 274 280 354Z"
-                fill="url(#inner)"
-                fill-rule="evenodd"
-              />
-              <ellipse
-                cx="365"
-                cy="352"
-                rx="308"
-                ry="107"
-                transform="rotate(-28 365 352)"
-                fill="none"
-                stroke="#647ba8"
-                stroke-width=".8"
-              />
-              <g class="sphere">
-                <circle cx="455" cy="245" r="62" fill="url(#gold)" />
-                <circle cx="160" cy="440" r="5" fill="#1d3be0" />
-              </g></svg
-            ><span class="micro art-label">A study of depth / 7893</span>
-          </div>
-        </section>
-        <div class="rule">
-          <p class="micro">
-            An object without a purpose.<br />A moment without a hurry.
-          </p>
-          <div class="controls">
-            <span
-              class="micro counter"
-              id="counter"
-              aria-live="polite"
-              aria-atomic="true"
-              >01 / 03</span
-            ><button type="button" id="turn">
-              Change perspective <span aria-hidden="true">&#8599;</span>
-            </button>
-          </div>
-        </div>
-        <noscript
-          ><p class="micro">
-            Enable JavaScript to change perspective.
-          </p></noscript
-        >
-      </main>
-      <footer class="micro">
-        <span>Independent by design.</span
-        ><a href="https://github.com/7893/7893.github.io"
-          >View source &#8599;</a
-        >
-      </footer>
-    </div>
+</head>
+
+<body>
+    <p id="color">#000000</p>
     <script>
-      "use strict";
-      let perspective = 0;
-      document.getElementById("turn").addEventListener("click", () => {
-        perspective = (perspective + 1) % 3;
-        document.getElementById("artwork").dataset.state = perspective;
-        document.getElementById("counter").textContent =
-          String(perspective + 1).padStart(2, "0") + " / 03";
-      });
+        function randomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        function hslToHex(h, s, l) {
+            h /= 360;
+            s /= 100;
+            l /= 100;
+            var r = void 0,
+                g = void 0,
+                b = void 0;
+            if (s === 0) {
+                r = g = b = l; // achromatic
+            } else {
+                var hue2rgb = function hue2rgb(p, q, t) {
+                    if (t < 0) t += 1;
+                    if (t > 1) t -= 1;
+                    if (t < 1 / 6) return p + (q - p) * 6 * t;
+                    if (t < 1 / 2) return q;
+                    if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+                    return p;
+                };
+                var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+                var p = 2 * l - q;
+                r = hue2rgb(p, q, h + 1 / 3);
+                g = hue2rgb(p, q, h);
+                b = hue2rgb(p, q, h - 1 / 3);
+            }
+            var toHex = function toHex(x) {
+                var hex = Math.round(x * 255).toString(16);
+                return hex.length === 1 ? '0' + hex : hex;
+            };
+            return '#' + toHex(r) + toHex(g) + toHex(b);
+        }
+
+        window.onload = function () {
+            let stopProp = function (ev) {
+                ev.stopPropagation();
+            }
+
+            var colorElement = document.getElementById("color");
+            colorElement.addEventListener("click", stopProp, false);
+            colorElement.addEventListener("mousedown", stopProp, false);
+
+            var setFavicon = function (hex) {
+                var canvas = document.createElement('canvas');
+                canvas.width = 16;
+                canvas.height = 16;
+                var ctx = canvas.getContext('2d');
+                ctx.fillStyle = hex;
+                ctx.fillRect(0, 0, 16, 16);
+                document.getElementsByTagName('link')[0].href = canvas.toDataURL("image/x-icon");
+            }
+
+            var setRandomColor = function setRandomColor() {
+                var h = void 0,
+                    s = void 0,
+                    l = void 0;
+
+                h = randomInt(0, 359);
+                s = randomInt(55, 75);
+                l = randomInt(40, 60);
+
+                document.documentElement.style.setProperty('--color', 'hsl(' + h + ', ' + s + '%, ' + l + '%)');
+                var hex = hslToHex(h, s, l);
+                document.title = hex;
+                colorElement.innerHTML = hex;
+                document.documentElement.style.setProperty('--color-transparent', hex + '22');
+
+                setFavicon(hex);
+            };
+            setRandomColor();
+
+            var body = document.getElementsByTagName("body")[0];
+            body.addEventListener("mousedown", function (ev) {
+                ev.preventDefault();
+            });
+            body.addEventListener("click", function () {
+                setRandomColor();
+            }, false);
+        };
     </script>
-  </body>
+</body>
+
 </html>
