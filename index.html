@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="renderer" content="webkit">
+    <meta name="theme-color" content="#000000" id="theme-color">
     <title>#000000</title>
-    <link type="image/x-icon" rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAHklEQVQ4T2NkYGD4z0ABYBw1gGE0DBhGw4BhWIQBAE5OEAELnjVHAAAAAElFTkSuQmCC">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAHklEQVQ4T2NkYGD4z0ABYBw1gGE0DBhGw4BhWIQBAE5OEAELnjVHAAAAAElFTkSuQmCC">
     <style>
         :root {
             --color: #000000;
@@ -21,7 +20,6 @@
         html,
         body {
             background: var(--color);
-            height: 100%;
             margin: 0;
         }
 
@@ -29,109 +27,111 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 100vh;
+            min-height: 100dvh;
             cursor: pointer;
-            transform: translateZ(0);
-            will-change: transform;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         #color {
-            background: white;
+            background: #ffffff;
             color: var(--color);
             font-size: 2.5rem;
             font-weight: 300;
             padding: 2.25rem 3rem;
-            font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Ubuntu, Roboto, Noto, "Segoe UI", Arial, sans-serif;
             cursor: text;
-            transform: translateZ(0);
-            will-change: color, background-color;
+            user-select: text;
+            -webkit-user-select: text;
         }
     </style>
 </head>
 
 <body>
-    <p id="color">#000000</p>
+    <p id="color" aria-live="polite">#000000</p>
     <script>
-        function randomInt(min, max) {
-            return Math.floor(Math.random() * (max - min + 1) + min);
-        }
-
-        function hslToHex(h, s, l) {
-            h /= 360;
-            s /= 100;
-            l /= 100;
-            var r = void 0,
-                g = void 0,
-                b = void 0;
-            if (s === 0) {
-                r = g = b = l; // achromatic
-            } else {
-                var hue2rgb = function hue2rgb(p, q, t) {
-                    if (t < 0) t += 1;
-                    if (t > 1) t -= 1;
-                    if (t < 1 / 6) return p + (q - p) * 6 * t;
-                    if (t < 1 / 2) return q;
-                    if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
-                    return p;
-                };
-                var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
-                var p = 2 * l - q;
-                r = hue2rgb(p, q, h + 1 / 3);
-                g = hue2rgb(p, q, h);
-                b = hue2rgb(p, q, h - 1 / 3);
-            }
-            var toHex = function toHex(x) {
-                var hex = Math.round(x * 255).toString(16);
-                return hex.length === 1 ? '0' + hex : hex;
-            };
-            return '#' + toHex(r) + toHex(g) + toHex(b);
-        }
-
-        window.onload = function () {
-            let stopProp = function (ev) {
-                ev.stopPropagation();
+        (() => {
+            function randomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1) + min);
             }
 
-            var colorElement = document.getElementById("color");
-            colorElement.addEventListener("click", stopProp, false);
-            colorElement.addEventListener("mousedown", stopProp, false);
+            function hslToHex(h, s, l) {
+                h /= 360;
+                s /= 100;
+                l /= 100;
 
-            var setFavicon = function (hex) {
-                var canvas = document.createElement('canvas');
-                canvas.width = 16;
-                canvas.height = 16;
-                var ctx = canvas.getContext('2d');
-                ctx.fillStyle = hex;
-                ctx.fillRect(0, 0, 16, 16);
-                document.getElementsByTagName('link')[0].href = canvas.toDataURL("image/x-icon");
+                let r, g, b;
+                if (s === 0) {
+                    r = g = b = l;
+                } else {
+                    const hue2rgb = (p, q, t) => {
+                        if (t < 0) t += 1;
+                        if (t > 1) t -= 1;
+                        if (t < 1 / 6) return p + (q - p) * 6 * t;
+                        if (t < 1 / 2) return q;
+                        if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+                        return p;
+                    };
+                    const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+                    const p = 2 * l - q;
+                    r = hue2rgb(p, q, h + 1 / 3);
+                    g = hue2rgb(p, q, h);
+                    b = hue2rgb(p, q, h - 1 / 3);
+                }
+
+                const toHex = (x) => Math.round(x * 255).toString(16).padStart(2, "0");
+                return "#" + toHex(r) + toHex(g) + toHex(b);
             }
 
-            var setRandomColor = function setRandomColor() {
-                var h = void 0,
-                    s = void 0,
-                    l = void 0;
+            const colorElement = document.getElementById("color");
+            const themeColorMeta = document.getElementById("theme-color");
+            const faviconLink = document.querySelector('link[rel="icon"]');
 
-                h = randomInt(0, 359);
-                s = randomInt(55, 75);
-                l = randomInt(40, 60);
+            const faviconCanvas = document.createElement("canvas");
+            faviconCanvas.width = 16;
+            faviconCanvas.height = 16;
+            const faviconCtx = faviconCanvas.getContext("2d");
 
-                document.documentElement.style.setProperty('--color', 'hsl(' + h + ', ' + s + '%, ' + l + '%)');
-                var hex = hslToHex(h, s, l);
+            function setFavicon(hex) {
+                if (!faviconCtx || !faviconLink) return;
+                faviconCtx.fillStyle = hex;
+                faviconCtx.fillRect(0, 0, 16, 16);
+                faviconLink.href = faviconCanvas.toDataURL("image/png");
+            }
+
+            function setRandomColor() {
+                const h = randomInt(0, 359);
+                const s = randomInt(55, 75);
+                const l = randomInt(40, 60);
+                const hex = hslToHex(h, s, l);
+
+                document.documentElement.style.setProperty("--color", `hsl(${h}, ${s}%, ${l}%)`);
+                document.documentElement.style.setProperty("--color-transparent", `${hex}22`);
                 document.title = hex;
-                colorElement.innerHTML = hex;
-                document.documentElement.style.setProperty('--color-transparent', hex + '22');
-
+                colorElement.textContent = hex;
+                if (themeColorMeta) {
+                    themeColorMeta.setAttribute("content", hex);
+                }
                 setFavicon(hex);
-            };
-            setRandomColor();
+            }
 
-            var body = document.getElementsByTagName("body")[0];
-            body.addEventListener("mousedown", function (ev) {
-                ev.preventDefault();
+            const stopPropagation = (event) => event.stopPropagation();
+            colorElement.addEventListener("click", stopPropagation);
+            colorElement.addEventListener("mousedown", stopPropagation);
+
+            document.body.addEventListener("click", setRandomColor);
+            document.addEventListener("keydown", (event) => {
+                if (event.metaKey || event.ctrlKey || event.altKey) return;
+                if (event.code === "Space" || event.key === "Enter") {
+                    event.preventDefault();
+                    setRandomColor();
+                }
             });
-            body.addEventListener("click", function () {
-                setRandomColor();
-            }, false);
-        };
+
+            setRandomColor();
+        })();
     </script>
 </body>
 
